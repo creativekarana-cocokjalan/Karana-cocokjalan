@@ -165,6 +165,13 @@ insert into sections (id, data) values
   "nav_cta_label": "START A PROJECT",
   "footer_copyright_name": "KARANA"
 }'::jsonb),
+('nav', '{
+  "work_label": "WORK",
+  "studio_label": "STUDIO",
+  "services_label": "SERVICES",
+  "locations_label": "LOCATIONS",
+  "contact_label": "CONTACT"
+}'::jsonb),
 ('hero', '{
   "by_line": "PRODUCTION BY COCOKJALAN",
   "headline_line1": "WE MAKE STORIES",
@@ -172,6 +179,8 @@ insert into sections (id, data) values
   "frame_top_left": "KARANA — REEL 001",
   "frame_top_right": "EST. INDONESIA",
   "frame_bottom_left": "DIR. COCOKJALAN",
+  "frame_bottom_right": "00:00:00:01",
+  "scroll_cue_text": "SCROLL TO EXPLORE",
   "bg_image_url": "https://picsum.photos/seed/karana-hero/1920/1080",
   "bg_video_url": ""
 }'::jsonb),
@@ -180,7 +189,21 @@ insert into sections (id, data) values
   "line2": "THEY DON''T HAVE TO STAY THAT WAY.",
   "bg_image_url": "https://picsum.photos/seed/karana-intro/1600/1200"
 }'::jsonb),
+('work', '{
+  "eyebrow": "( SELECTED WORK )",
+  "title_line1": "STORIES",
+  "title_line2": "WE''VE TOLD.",
+  "see_all_label": "SEE ALL WORK",
+  "overlay_role_text": "Direction · Production · Post"
+}'::jsonb),
+('gallery', '{
+  "eyebrow": "( MORE WORK )",
+  "title_line1": "THE REEL",
+  "title_line2": "CONTINUES →",
+  "end_card_label": "SEE ALL WORK"
+}'::jsonb),
 ('about', '{
+  "eyebrow": "( THE STUDIO )",
   "row1": "WE DON''T JUST",
   "row2": "PRODUCE.",
   "row3": "WE BUILD",
@@ -188,11 +211,23 @@ insert into sections (id, data) values
   "body_copy": "KARANA is a production house based in Indonesia, telling stories for brands, artists and filmmakers who want more than footage — they want a world worth stepping into. Every frame is built with intention.",
   "bg_image_url": "https://picsum.photos/seed/karana-about/1800/1200"
 }'::jsonb),
+('servicesSection', '{
+  "eyebrow": "( CAPABILITIES )",
+  "title": "WHAT WE DO."
+}'::jsonb),
 ('moment', '{
   "line1": "MAKE SOMETHING",
   "line2": "WORTH REMEMBERING.",
   "bg_image_url": "https://picsum.photos/seed/karana-moment/1920/1080",
   "video_url": ""
+}'::jsonb),
+('locationsSection', '{
+  "eyebrow": "( PRODUCTION CAPABILITIES )",
+  "title_line1": "WHEREVER THE",
+  "title_line2": "STORY TAKES US."
+}'::jsonb),
+('clientsSection', '{
+  "eyebrow": "( TRUSTED BY )"
 }'::jsonb),
 ('contact', '{
   "headline_line1": "HAVE A STORY",
@@ -200,11 +235,16 @@ insert into sections (id, data) values
   "sub": "LET''S MAKE SOMETHING WORTH WATCHING.",
   "bg_image_url": "https://picsum.photos/seed/karana-contact/1800/1200",
   "email": "hello@karana.studio",
+  "email_cta_label": "EMAIL US",
   "whatsapp_number": "6281234567890",
   "whatsapp_message": "Hi KARANA, I have a story I''d like to make with you.",
+  "whatsapp_cta_label": "WHATSAPP",
   "instagram_url": "https://instagram.com/karana.studio",
+  "instagram_label": "INSTAGRAM",
   "tiktok_url": "https://tiktok.com/@karana.studio",
-  "youtube_url": "https://youtube.com/@karana.studio"
+  "tiktok_label": "TIKTOK",
+  "youtube_url": "https://youtube.com/@karana.studio",
+  "youtube_label": "YOUTUBE"
 }'::jsonb)
 on conflict (id) do nothing;
 
