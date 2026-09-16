@@ -7,7 +7,20 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   const { sections, work, gallery, services, locations, clients } = await getHomeContent();
-  const { site, hero, intro, about, moment, contact } = sections;
+  const {
+    site,
+    nav,
+    hero,
+    intro,
+    about,
+    moment,
+    contact,
+    work: workSection,
+    gallery: gallerySection,
+    servicesSection,
+    locationsSection,
+    clientsSection,
+  } = sections;
 
   const workTotal = String(work.length).padStart(2, "0");
   const waHref = contact.whatsapp_number
@@ -48,13 +61,13 @@ export default async function HomePage() {
         </a>
         <nav className="nav__links">
           <a href="#work" data-cursor="OPEN →">
-            WORK
+            {nav.work_label}
           </a>
           <a href="#about" data-cursor="OPEN →">
-            STUDIO
+            {nav.studio_label}
           </a>
           <a href="#services" data-cursor="OPEN →">
-            SERVICES
+            {nav.services_label}
           </a>
           <a href="#contact" className="nav__cta" data-cursor="OPEN →">
             {site.nav_cta_label}
@@ -75,11 +88,11 @@ export default async function HomePage() {
       </header>
 
       <div className="nav-mobile" id="navMobile">
-        <a href="#work">WORK</a>
-        <a href="#about">STUDIO</a>
-        <a href="#services">SERVICES</a>
-        <a href="#locations">LOCATIONS</a>
-        <a href="#contact">CONTACT</a>
+        <a href="#work">{nav.work_label}</a>
+        <a href="#about">{nav.studio_label}</a>
+        <a href="#services">{nav.services_label}</a>
+        <a href="#locations">{nav.locations_label}</a>
+        <a href="#contact">{nav.contact_label}</a>
         <Link href="/admin" className="nav-mobile__admin">
           ADMIN
         </Link>
@@ -134,7 +147,7 @@ export default async function HomePage() {
           </div>
 
           <div className="hero__scroll-cue" id="scrollCue">
-            <span>SCROLL TO EXPLORE</span>
+            <span>{hero.scroll_cue_text}</span>
             <span className="hero__scroll-arrow">↓</span>
           </div>
 
@@ -142,7 +155,7 @@ export default async function HomePage() {
             <span className="fl fl--tl">{hero.frame_top_left}</span>
             <span className="fl fl--tr">{hero.frame_top_right}</span>
             <span className="fl fl--bl">{hero.frame_bottom_left}</span>
-            <span className="fl fl--br">00:00:00:01</span>
+            <span className="fl fl--br">{hero.frame_bottom_right}</span>
           </div>
         </section>
 
@@ -175,15 +188,15 @@ export default async function HomePage() {
         <section className="work" id="work">
           <div className="work__header">
             <div className="work__header-text">
-              <span className="eyebrow">( SELECTED WORK )</span>
+              <span className="eyebrow">{workSection.eyebrow}</span>
               <h2 className="section-title">
-                STORIES
+                {workSection.title_line1}
                 <br />
-                WE'VE TOLD.
+                {workSection.title_line2}
               </h2>
             </div>
             <a href="#gallery" className="work__see-all" data-cursor="OPEN →">
-              <span>SEE ALL WORK</span>
+              <span>{workSection.see_all_label}</span>
               <span className="arrow">→</span>
             </a>
           </div>
@@ -227,11 +240,11 @@ export default async function HomePage() {
         <section className="gallery" id="gallery">
           <div className="gallery__pin">
             <div className="gallery__intro">
-              <span className="eyebrow">( MORE WORK )</span>
+              <span className="eyebrow">{gallerySection.eyebrow}</span>
               <h2 className="section-title gallery__title">
-                THE REEL
+                {gallerySection.title_line1}
                 <br />
-                CONTINUES →
+                {gallerySection.title_line2}
               </h2>
             </div>
 
@@ -258,7 +271,7 @@ export default async function HomePage() {
 
               <div className="g-card g-card--end">
                 <a href="#contact" className="g-card__end-cta" data-cursor="OPEN →">
-                  <span>SEE ALL WORK</span>
+                  <span>{gallerySection.end_card_label}</span>
                   <span className="arrow">→</span>
                 </a>
               </div>
@@ -294,7 +307,7 @@ export default async function HomePage() {
           </div>
 
           <div className="about__copy">
-            <span className="eyebrow">( THE STUDIO )</span>
+            <span className="eyebrow">{about.eyebrow}</span>
             <p>{about.body_copy}</p>
           </div>
         </section>
@@ -305,8 +318,8 @@ export default async function HomePage() {
           <div className="services__scrim" />
 
           <div className="services__header">
-            <span className="eyebrow">( CAPABILITIES )</span>
-            <h2 className="section-title">WHAT WE DO.</h2>
+            <span className="eyebrow">{servicesSection.eyebrow}</span>
+            <h2 className="section-title">{servicesSection.title}</h2>
           </div>
 
           <div className="services__list" id="servicesList">
@@ -357,11 +370,11 @@ export default async function HomePage() {
           <div className="locations__scrim" />
 
           <div className="locations__header">
-            <span className="eyebrow">( PRODUCTION CAPABILITIES )</span>
+            <span className="eyebrow">{locationsSection.eyebrow}</span>
             <h2 className="section-title">
-              WHEREVER THE
+              {locationsSection.title_line1}
               <br />
-              STORY TAKES US.
+              {locationsSection.title_line2}
             </h2>
           </div>
 
@@ -385,7 +398,7 @@ export default async function HomePage() {
 
         {/* CLIENTS */}
         <section className="clients" id="clients">
-          <span className="eyebrow">( TRUSTED BY )</span>
+          <span className="eyebrow">{clientsSection.eyebrow}</span>
           <div className="clients__list" id="clientsList">
             {clients.map((c) => (
               <span className="client" key={c.id}>
@@ -420,13 +433,13 @@ export default async function HomePage() {
               <div className="contact__cta-row">
                 {contact.email ? (
                   <a href={`mailto:${contact.email}`} className="contact__cta" data-cursor="OPEN →">
-                    <span>EMAIL US</span>
+                    <span>{contact.email_cta_label}</span>
                     <span className="arrow">→</span>
                   </a>
                 ) : null}
                 {waHref ? (
                   <a href={waHref} target="_blank" rel="noopener noreferrer" className="contact__cta contact__cta--wa" data-cursor="OPEN →">
-                    <span>WHATSAPP</span>
+                    <span>{contact.whatsapp_cta_label}</span>
                     <span className="arrow">→</span>
                   </a>
                 ) : null}
@@ -452,17 +465,17 @@ export default async function HomePage() {
                     <span className="label">SOCIAL</span>
                     {contact.instagram_url ? (
                       <a href={contact.instagram_url} target="_blank" rel="noopener noreferrer" data-cursor="OPEN →">
-                        INSTAGRAM
+                        {contact.instagram_label}
                       </a>
                     ) : null}
                     {contact.tiktok_url ? (
                       <a href={contact.tiktok_url} target="_blank" rel="noopener noreferrer" data-cursor="OPEN →">
-                        TIKTOK
+                        {contact.tiktok_label}
                       </a>
                     ) : null}
                     {contact.youtube_url ? (
                       <a href={contact.youtube_url} target="_blank" rel="noopener noreferrer" data-cursor="OPEN →">
-                        YOUTUBE
+                        {contact.youtube_label}
                       </a>
                     ) : null}
                   </div>
@@ -509,7 +522,7 @@ export default async function HomePage() {
             </div>
             <div>
               <span className="label">ROLE</span>
-              <span>Direction · Production · Post</span>
+              <span>{workSection.overlay_role_text}</span>
             </div>
           </div>
           <p id="overlayDesc">
