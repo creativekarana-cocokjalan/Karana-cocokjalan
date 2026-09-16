@@ -36,9 +36,16 @@ export async function proxy(request) {
 
   const { pathname } = request.nextUrl;
   const isLoginPath = pathname === "/admin/login";
+  // Both must stay reachable without an existing session: forgot-password is
+  // how you request a reset link in the first place, and reset-password is
+  // where you land (with a fresh recovery session, established by
+  // /auth/confirm) right after clicking that link.
+  const isForgotPasswordPath = pathname === "/admin/forgot-password";
+  const isResetPasswordPath = pathname === "/admin/reset-password";
+  const isPublicAuthPath = isLoginPath || isForgotPasswordPath || isResetPasswordPath;
   const isAdminPath = pathname.startsWith("/admin");
 
-  if (isAdminPath && !isLoginPath && !user) {
+  if (isAdminPath && !isPublicAuthPath && !user) {
     const url = request.nextUrl.clone();
     url.pathname = "/admin/login";
     url.searchParams.set("next", pathname);

@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import Link from "next/link";
 import { signIn } from "@/app/actions/auth";
 
 const initialState = { error: null };
@@ -27,6 +28,10 @@ export default function LoginForm({ next }) {
       <button type="submit" className="admin-btn admin-btn--primary" disabled={pending}>
         {pending ? "Signing in…" : "Sign in"}
       </button>
+
+      <Link href="/admin/forgot-password" className="admin-auth__link">
+        Forgot password?
+      </Link>
     </form>
   );
 }
